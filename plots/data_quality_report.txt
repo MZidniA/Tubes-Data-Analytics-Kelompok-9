@@ -1,0 +1,24 @@
+=== DATA QUALITY REPORT: BEFORE VS AFTER SCRUBBING ===
+
+1. Key Alignments:
+   - IPM: Sliced rows 48-74. Replaced 'Kabupaten ' with 'Kab. ' to match keys.
+   - Poverty: Sliced rows 0-26. Prefixed Kabupaten names with 'Kab. '.
+   - Putus Sekolah: Sliced rows 5-31. Already had standard keys.
+   - Joined: Inner join on standard 'Kab_Kota' key. Total rows = 27 (exactly matches Jabar administrative subdivisions).
+
+2. Missing Value Resolution:
+   - September poverty columns removed entirely due to 100% missing data at Kab/Kota level.
+   - March poverty columns had 0 missing values.
+   - Putus Sekolah NaN values filled with 0 (no NaN values were actually present in sliced range).
+   - IPM 2024 and Laju IPM columns parsed to float successfully (0 missing values).
+
+3. Outliers (IQR Method on Key Variables):
+   - Variable 'Total_Putus_Sekolah':
+     IQR = 233.0000, Lower Bound = -266.0000, Upper Bound = 666.0000
+     Outlier regions: None
+   - Variable 'Persentase_Miskin_Maret':
+     IQR = 3.8250, Lower Bound = 0.6225, Upper Bound = 15.9225
+     Outlier regions: None
+   - Variable 'IPM_2024':
+     IQR = 6.0450, Lower Bound = 62.1325, Upper Bound = 86.3125
+     Outlier regions: None
